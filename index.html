@@ -60,13 +60,46 @@
   .pad-card{padding:14px;margin-top:16px}
   .pad-card h2,.coach h2,.below h2{font-family:"Baloo 2",cursive;font-size:20px;margin:0 0 4px}
   .pad-sub{color:var(--muted);font-size:13.5px;margin:0 0 12px}
-  .face-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-  @media (max-width:560px){.face-grid{grid-template-columns:repeat(3,1fr)}}
-  .face-col{display:flex;flex-direction:column;gap:6px}
-  .face-btn{border-radius:12px;border:0;color:#fff;font-weight:800;font-size:17px;padding:10px 4px;min-height:48px;font-family:"JetBrains Mono",monospace}
-  .face-btn small{display:block;font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:10.5px;opacity:.9;letter-spacing:.02em}
-  .mini-row{display:flex;gap:6px}
-  .mini-btn{flex:1;border:1.5px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:9px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;min-height:38px;padding:4px}
+  .face-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  @media (max-width:560px){.face-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:380px){.face-grid{grid-template-columns:1fr}}
+  .face-card{border:2px solid var(--line);border-radius:14px;padding:10px;background:var(--panel)}
+  .face-card.sel{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(233,168,0,.35)}
+  .face-card.flash{animation:cardFlash .38s ease}
+  @keyframes cardFlash{0%{background:var(--yellow)}100%{background:var(--panel)}}
+  .face-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;min-height:32px}
+  .face-swatch{width:22px;height:22px;border-radius:6px;border:2px solid rgba(0,0,0,.35);flex-shrink:0}
+  .face-name{font-weight:800;font-size:15.5px}
+  .face-key{margin-left:auto;color:var(--muted);font-size:12px;font-weight:700;white-space:nowrap}
+  .turn-row{display:flex;gap:6px}
+  .turn-btn{flex:1;border:1.5px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:11px;font-weight:800;font-size:13.5px;padding:9px 4px;min-height:56px;line-height:1.25}
+  .turn-btn small{display:block;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted);font-weight:700}
+  .turn-btn.main{background:var(--chip);color:var(--chip-ink);border-color:var(--chip)}
+  .turn-btn.main small{color:inherit;opacity:.75}
+  .turn-btn:active{transform:translateY(1px)}
+  .half-btn{width:100%;margin-top:6px;border:1.5px dashed var(--line);background:transparent;color:var(--muted);border-radius:9px;font-weight:700;font-size:12.5px;min-height:36px}
+  .half-btn small{font-family:"JetBrains Mono",monospace}
+  .sel-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--panel2);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:12px;font-size:14px}
+  .sel-btns{display:flex;gap:6px}
+  .sel-btns .btn{min-height:48px}
+  .kbd-map{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+  .kbd-map h3{font-family:"Baloo 2",cursive;font-size:16.5px;margin:0 0 8px}
+  .kbd-flex{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start}
+  .kbd-net{display:grid;grid-template-columns:repeat(3,52px);gap:5px}
+  .key{border:1.5px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:9px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:15px;min-height:48px;padding:4px}
+  .key small{display:block;font-family:"Nunito Sans",sans-serif;font-size:9.5px;font-weight:700;color:var(--muted)}
+  .key.sel{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(233,168,0,.35)}
+  .key.flash{animation:cardFlash .38s ease}
+  .kbd-legend{font-size:13.5px;color:var(--muted);margin:2px 0 0;padding-left:18px;max-width:46ch}
+  .kbd-legend li{margin-bottom:5px}
+  .net-panel{border-radius:10px;padding:3px}
+  .net-panel.sel{outline:3px solid var(--yellow)}
+  .net-cell.target{outline:3px solid #ffc400;outline-offset:-1px;animation:netPulse .9s ease-in-out infinite}
+  .net-cell.slot{outline:3px dashed rgba(255,196,0,.95);outline-offset:-3px}
+  @keyframes netPulse{50%{outline-color:#ffffff}}
+  .net-btns{display:flex;gap:4px;margin-top:4px}
+  .net-btns button{flex:1;min-height:34px;border:1.5px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:8px;font-weight:800;font-size:14px}
+  @media (prefers-reduced-motion: reduce){ .net-cell.target{animation:none} .face-card.flash,.key.flash{animation:none} }
   .f-U{background:#8a8f85}.f-D{background:#c99300}.f-F{background:#0a7a42}.f-B{background:#145ecb}.f-R{background:#c8102e}.f-L{background:#e85d04}
   @media (prefers-color-scheme: dark){.f-U{background:#5b6057}}
   .pad-tools{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;align-items:center}
@@ -143,10 +176,10 @@
           <span class="stat" id="stateStat">Solved</span>
           <span id="solvedBadge">&#127942; Solved!</span>
         </div>
-        <div id="canvasWrap"><div class="drag-hint">Drag to look around &middot; scroll to zoom</div></div>
+        <div id="canvasWrap"><div class="drag-hint">Drag a face to turn it &middot; drag the background to look around</div></div>
         <div class="stage-actions">
           <button class="btn primary" id="scrambleBtn">Scramble</button>
-          <button class="btn" id="undoBtn" disabled>Undo</button>
+          <button class="btn dark" id="undoBtn" disabled>&#8617; Undo</button>
           <button class="btn" id="resetBtn">Reset cube</button>
           <button class="btn dark" id="demoBtn">Watch a solve</button>
         </div>
@@ -154,7 +187,14 @@
 
       <section class="card pad-card" aria-label="Move controls">
         <h2>Turn the faces</h2>
-        <p class="pad-sub">Big button = clockwise (looking straight at that face). <b>&prime;</b> = counter-clockwise, <b>2</b> = half turn. White starts on top, green facing you.</p>
+        <p class="pad-sub">Easiest of all: <b>drag a face right on the cube</b> &mdash; the layer follows your finger or mouse and turns when you let go. Or use the big buttons below. White starts on top, green facing you.</p>
+        <div class="sel-bar" id="selBar">
+          <span id="selText">Tap a face on the cube, tap a face name below, or press a letter key &mdash; then turn the highlighted face here.</span>
+          <div class="sel-btns">
+            <button class="btn" id="selCcw" disabled>&#8634; Turn left</button>
+            <button class="btn dark" id="selCw" disabled>Turn right &#8635;</button>
+          </div>
+        </div>
         <div class="face-grid" id="faceGrid"></div>
         <div class="pad-tools">
           <label class="toggle"><input type="checkbox" id="wideToggle"> Wide turns <span style="color:var(--muted);font-weight:600">(2 layers deep)</span></label>
@@ -166,7 +206,22 @@
             <button class="btn" data-view="reset">Reset view</button>
           </div>
         </div>
-        <p class="pad-sub" style="margin-top:12px">Keyboard: <kbd>U</kbd> <kbd>D</kbd> <kbd>L</kbd> <kbd>R</kbd> <kbd>F</kbd> <kbd>B</kbd> turn a face &middot; hold <kbd>Shift</kbd> for &prime; &middot; <kbd>2</kbd> after a letter = half turn (e.g. <kbd>R</kbd> then <kbd>2</kbd>) &middot; arrow keys tilt the view &middot; <kbd>X</kbd>/<kbd>Y</kbd>/<kbd>Z</kbd> rotate the whole cube &middot; <kbd>Ctrl</kbd>+<kbd>Z</kbd> undo &middot; <kbd>S</kbd> scramble</p>
+        <div class="kbd-map">
+          <h3>Keyboard map</h3>
+          <div class="kbd-flex">
+            <div class="kbd-net" role="group" aria-label="Face keys laid out like the cube">
+              <span></span><button class="key" data-keyface="U">U<small>Up</small></button><span></span>
+              <button class="key" data-keyface="L">L<small>Left</small></button><button class="key" data-keyface="F">F<small>Front</small></button><button class="key" data-keyface="R">R<small>Right</small></button>
+              <span></span><button class="key" data-keyface="D">D<small>Down</small></button><span></span>
+              <span></span><button class="key" data-keyface="B">B<small>Back</small></button><span></span>
+            </div>
+            <ul class="kbd-legend">
+              <li><b>Letter key</b> turns that face clockwise and highlights it. <b>Shift + letter</b> turns it back. Tap a key above to just highlight the face.</li>
+              <li><b>&larr; &rarr;</b> (or <b>,</b> and <b>.</b>) turn the highlighted face &mdash; no Shift, no notation needed. <b>&uarr; &darr;</b> tilt the view.</li>
+              <li><b>Ctrl+Z</b> undo &middot; <b>S</b> scramble &middot; <b>Esc</b> clear the highlight &middot; <b>X</b>/<b>Y</b>/<b>Z</b> rotate the whole cube &middot; press <b>2</b> right after a letter for a half turn.</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -184,6 +239,7 @@
       <div id="coachBody"></div>
       <div class="coach-actions">
         <button class="btn dark" id="nextPieceBtn">Find my next piece</button>
+        <button class="btn primary" id="showMeBtn" disabled>&#9654; Show me on the cube</button>
         <button class="btn" id="doAlgBtn">Do this algorithm for me</button>
       </div>
       <div class="mistake-note"><strong>Mistake-proof by design:</strong> the coach never assumes you followed its last instruction. After every turn it looks at the cube as it really is and plans from there &mdash; wander off, experiment, or undo, and the next step still fits.</div>
@@ -224,6 +280,10 @@ var moveCount = 0;
 var timerStart = null, timerInt = null, elapsedBefore = 0;
 var animating = false;
 var pendingAlg = null;  // array of move labels for current walkthrough algorithm
+var pendingShow = null; // move labels the "Show me" button plays back slowly
+var selectedFace = null; // face letter currently highlighted for arrow-key turning
+var targetHL = { cubie:null, home:null }; // coach target piece + its home slot, for highlighting
+var animScale = 1;      // animation duration multiplier (>1 = slower, for Show me)
 
 var COLORS = { U:0xffffff, D:0xffd500, F:0x009b48, B:0x0051ba, R:0xc8102e, L:0xff6a00 };
 var COLOR_NAMES = { U:"white", D:"yellow", F:"green", B:"blue", R:"red", L:"orange" };
@@ -264,19 +324,134 @@ function layoutCamera(){
 }
 window.addEventListener('resize', layoutCamera);
 
-/* drag to orbit + wheel zoom */
-var dragging=false, lastX=0, lastY=0;
-wrap.addEventListener('pointerdown', function(e){ dragging=true; lastX=e.clientX; lastY=e.clientY; wrap.setPointerCapture(e.pointerId); });
-wrap.addEventListener('pointermove', function(e){
-  if(!dragging) return;
-  viewTarget.y += (e.clientX-lastX)*0.008;
-  viewTarget.x += (e.clientY-lastY)*0.008;
-  viewTarget.x = Math.max(-1.4, Math.min(1.4, viewTarget.x));
-  if(viewGroup) viewGroup.rotation.set(viewTarget.x, viewTarget.y, 0);
-  lastX=e.clientX; lastY=e.clientY;
+/* Pointer control: drag ON a face turns that layer (with live preview);
+   drag on the background orbits the view. Wheel zooms. Works for mouse + touch. */
+var drag = null; // {mode:'orbit'|'pending'|'turn', ...}
+function pickCubie(e){
+  if(!HAS_THREE || !renderer) return null;
+  var r = wrap.getBoundingClientRect();
+  var nx = ((e.clientX-r.left)/r.width)*2-1, ny = -((e.clientY-r.top)/r.height)*2+1;
+  var rc = new THREE.Raycaster();
+  rc.setFromCamera(new THREE.Vector2(nx,ny), camera);
+  var hits = rc.intersectObjects(cubeGroup.children, false);
+  if(!hits.length) return null;
+  var hit = hits[0], cubie = null;
+  cubies.forEach(function(c){ if(c.mesh===hit.object) cubie=c; });
+  if(!cubie || !hit.face) return null;
+  var n = hit.face.normal.clone().applyQuaternion(hit.object.quaternion);
+  return { cubie:cubie, normal:n };
+}
+function axisVec(a){ return a==='x' ? new THREE.Vector3(1,0,0) : a==='y' ? new THREE.Vector3(0,1,0) : new THREE.Vector3(0,0,1); }
+function screenDirOf(v3){
+  var q = viewGroup.getWorldQuaternion(new THREE.Quaternion());
+  var w = v3.clone().applyQuaternion(q);
+  var a = new THREE.Vector3(0,0,0).project(camera);
+  var b = w.project(camera);
+  var r = wrap.getBoundingClientRect();
+  return { x:(b.x-a.x)*r.width/2, y:-(b.y-a.y)*r.height/2 };
+}
+function faceLetterFor(axis, coord){ if(axis==='y') return coord>0?'U':'D'; if(axis==='x') return coord>0?'R':'L'; return coord>0?'F':'B'; }
+function dominantAxis(n){ return Math.abs(n.x)>0.5 ? 'x' : Math.abs(n.y)>0.5 ? 'y' : 'z'; }
+
+wrap.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+wrap.addEventListener('pointerdown', function(e){
+  if(e.target.closest && e.target.closest('[data-netturn],[data-netface]')) return; // let 2D-net buttons receive their click
+  if(animating) return;
+  var hit = (e.button===2) ? null : pickCubie(e);
+  try{ wrap.setPointerCapture(e.pointerId); }catch(err){}
+  drag = { mode: hit ? 'pending' : 'orbit', x0:e.clientX, y0:e.clientY, lx:e.clientX, ly:e.clientY, hit:hit };
+  if(hit){
+    var na = dominantAxis(hit.normal);
+    setSelected(faceLetterFor(na, na==='x' ? hit.normal.x : na==='y' ? hit.normal.y : hit.normal.z));
+  }
 });
-wrap.addEventListener('pointerup', function(){ dragging=false; });
+wrap.addEventListener('pointermove', function(e){
+  if(!drag) return;
+  var dxT = e.clientX-drag.x0, dyT = e.clientY-drag.y0;
+  if(drag.mode==='orbit'){
+    viewTarget.y += (e.clientX-drag.lx)*0.008;
+    viewTarget.x += (e.clientY-drag.ly)*0.008;
+    viewTarget.x = Math.max(-1.4, Math.min(1.4, viewTarget.x));
+    if(viewGroup) viewGroup.rotation.set(viewTarget.x, viewTarget.y, 0);
+  } else if(drag.mode==='pending'){
+    if(Math.hypot(dxT,dyT) > 7 && !beginDragTurn(dxT,dyT)) drag.mode='orbit';
+  } else if(drag.mode==='turn'){
+    updateDragTurn(dxT,dyT);
+  }
+  drag.lx=e.clientX; drag.ly=e.clientY;
+});
+function endDrag(){
+  if(!drag) return;
+  var d = drag; drag = null;
+  if(d.mode==='turn') finishDragTurn(d);
+}
+wrap.addEventListener('pointerup', endDrag);
+wrap.addEventListener('pointercancel', endDrag);
 wrap.addEventListener('wheel', function(e){ e.preventDefault(); camDist = Math.max(5.5, Math.min(13, camDist + e.deltaY*0.01)); layoutCamera(); }, {passive:false});
+
+function beginDragTurn(dxT, dyT){
+  var hit = drag.hit, c = hit.cubie, n = hit.normal;
+  var nAxis = dominantAxis(n);
+  var axes = ['x','y','z'].filter(function(a){ return a!==nAxis; });
+  var best = null;
+  axes.forEach(function(a){
+    var coord = c.pos[a], wide = false;
+    if(Math.abs(coord)!==half()){
+      if(N>3 && Math.abs(coord)===half()-2) wide = true; else return;
+    }
+    [1,-1].forEach(function(s){
+      var dir3 = axisVec(a).clone().cross(n).multiplyScalar(s);
+      var sd = screenDirOf(dir3);
+      var len = Math.hypot(sd.x,sd.y)||1; sd.x/=len; sd.y/=len;
+      var score = sd.x*dxT + sd.y*dyT;
+      if(!best || score>best.score) best = { axis:a, sign:s, score:score, sd:sd, wide:wide, coord:coord };
+    });
+  });
+  if(!best || best.score < 4) return false;
+  var face = faceLetterFor(best.axis, best.coord);
+  var prime = best.sign !== FACE_DEF[face].cwDir;
+  var label = face + (best.wide?'w':'') + (prime?"'":"");
+  var move = parseMove(label);
+  var affected = cubies.filter(function(cc){ return inLayer(cc, move); });
+  pivot.rotation.set(0,0,0);
+  affected.forEach(function(cc){ if(cc.mesh) (pivot.attach ? pivot.attach(cc.mesh) : pivot.add(cc.mesh)); });
+  drag.mode='turn'; drag.axis=best.axis; drag.sign=best.sign; drag.sd=best.sd;
+  drag.label=label; drag.move=move; drag.affected=affected; drag.angle=0; drag.mats=[];
+  affected.forEach(function(cc){ matSetOf(cc).forEach(function(m){ if(m.emissive){ m.emissive.setHex(0x3a3a3a); drag.mats.push(m); } }); });
+  setSelected(face);
+  startTimerIfNeeded();
+  updateDragTurn(dxT, dyT);
+  return true;
+}
+function updateDragTurn(dxT, dyT){
+  var along = dxT*drag.sd.x + dyT*drag.sd.y;
+  var ang = Math.max(-1.85, Math.min(1.85, along*0.011));
+  drag.angle = drag.sign * ang;
+  pivot.rotation.set(drag.axis==='x'?drag.angle:0, drag.axis==='y'?drag.angle:0, drag.axis==='z'?drag.angle:0);
+}
+function finishDragTurn(d){
+  var commit = Math.abs(d.angle) > 0.55;
+  var target = commit ? d.sign*Math.PI/2 : 0;
+  var from = d.angle, t0 = null, dur = 130;
+  function step(ts){
+    if(!t0) t0 = ts;
+    var p = Math.min(1, (ts-t0)/dur), e2 = 1-Math.pow(1-p,2);
+    var a = from + (target-from)*e2;
+    pivot.rotation.set(d.axis==='x'?a:0, d.axis==='y'?a:0, d.axis==='z'?a:0);
+    if(p<1){ requestAnimationFrame(step); return; }
+    d.affected.forEach(function(cc){ if(cc.mesh) (cubeGroup.attach ? cubeGroup.attach(cc.mesh) : cubeGroup.add(cc.mesh)); });
+    pivot.rotation.set(0,0,0);
+    d.mats.forEach(function(m){ m.emissive.setHex(0x000000); m.emissiveIntensity=1; });
+    if(commit){
+      applyMoveLogic(d.move);
+      recordMove(d.label, true);
+    } else {
+      syncMeshes(false);
+      applyHighlights();
+    }
+  }
+  requestAnimationFrame(step);
+}
 
 /* ============ Cube model ============
    Each cubie: mesh + pos {x,y,z} (integer coords centred on 0, scaled by 2 for even N)
@@ -391,6 +566,76 @@ function syncMeshes(fromAnim){
   });
 }
 
+/* ============ Highlights & face selection ============ */
+var slotMarker = null;
+var hlSteady = [], hlPulse = [];
+function matSetOf(c){
+  var out = []; if(!c.mesh) return out;
+  var dirs = ['px','nx','py','ny','pz','nz'], arr = c.mesh.material;
+  for(var i=0;i<arr.length;i++){ if(c.stickers[dirs[i]]) out.push(arr[i]); }
+  return out;
+}
+function clearCubeHighlights(){
+  hlSteady.concat(hlPulse).forEach(function(m){ if(m.emissive) m.emissive.setHex(0x000000); m.emissiveIntensity=1; });
+  hlSteady = []; hlPulse = [];
+  if(slotMarker) slotMarker.visible = false;
+}
+function applyHighlights(){
+  clearCubeHighlights();
+  if(!HAS_THREE) return;
+  var used = {};
+  function mark(c, list, hex){
+    matSetOf(c).forEach(function(m){
+      if(used[m.uuid] || !m.emissive) return;
+      used[m.uuid] = 1; m.emissive.setHex(hex); list.push(m);
+    });
+  }
+  if(selectedFace && FACE_DEF[selectedFace]){
+    var def = FACE_DEF[selectedFace], lc = def.layer * half();
+    cubies.forEach(function(c){ if(c.pos[def.axis]===lc) mark(c, hlSteady, 0x2e2e2e); });
+  }
+  if(targetHL.cubie) mark(targetHL.cubie, hlPulse, 0x8a6d00);
+  if(targetHL.home){
+    if(!slotMarker){
+      slotMarker = new THREE.Mesh(new THREE.BoxGeometry(1.07,1.07,1.07),
+        new THREE.MeshBasicMaterial({ color:0xffc400, wireframe:true, transparent:true, opacity:0.95 }));
+      slotMarker.raycast = function(){}; // never block drags on the cube itself
+      cubeGroup.add(slotMarker);
+    }
+    var s = 3/N;
+    slotMarker.scale.setScalar(s);
+    slotMarker.position.set(targetHL.home.x/2*s, targetHL.home.y/2*s, targetHL.home.z/2*s);
+    slotMarker.visible = true;
+  }
+}
+var FACE_NAMES = { U:'Up', D:'Down', L:'Left', R:'Right', F:'Front', B:'Back' };
+function setSelected(face){
+  selectedFace = face;
+  document.querySelectorAll('.face-card').forEach(function(el){ el.classList.toggle('sel', el.getAttribute('data-face')===face); });
+  document.querySelectorAll('.key[data-keyface]').forEach(function(el){ el.classList.toggle('sel', el.getAttribute('data-keyface')===face); });
+  var selText = document.getElementById('selText');
+  if(selText) selText.innerHTML = face
+    ? '<b>'+FACE_NAMES[face]+' face</b> is highlighted on the cube. Turn it with these buttons, the <kbd>&larr;</kbd> <kbd>&rarr;</kbd> arrow keys, or <kbd>,</kbd> and <kbd>.</kbd>'
+    : 'Tap a face on the cube, tap a face name below, or press a letter key &mdash; then turn the highlighted face here.';
+  var cw = document.getElementById('selCw'), ccw = document.getElementById('selCcw');
+  if(cw) cw.disabled = !face;
+  if(ccw) ccw.disabled = !face;
+  applyHighlights();
+  if(!HAS_THREE) renderNet();
+}
+function flashFace(face){
+  document.querySelectorAll('.face-card[data-face="'+face+'"], .key[data-keyface="'+face+'"]').forEach(function(el){
+    el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+    setTimeout(function(){ el.classList.remove('flash'); }, 400);
+  });
+}
+function turnSelected(ccw){
+  if(!selectedFace) return;
+  doMove(selectedFace + (ccw ? "'" : ""));
+  startTimerIfNeeded();
+  flashFace(selectedFace);
+}
+
 /* animated move */
 var pivot = null;
 if(HAS_THREE){ pivot = new THREE.Group(); viewGroup.add(pivot); }
@@ -407,7 +652,7 @@ function animateMove(move, done){
   // detach affected into pivot (keeping world-ish local transforms: both groups share viewGroup space, cubeGroup at origin)
   pivot.rotation.set(0,0,0);
   affected.forEach(function(c){ pivot.attach ? pivot.attach(c.mesh) : pivot.add(c.mesh); });
-  var start = null, dur = move.dbl?260:200;
+  var start = null, dur = (move.dbl?260:200) * animScale;
   function step(ts){
     if(!start) start = ts;
     var p = Math.min(1, (ts-start)/dur);
@@ -426,15 +671,16 @@ function animateMove(move, done){
   requestAnimationFrame(step);
 }
 
+function recordMove(label, countIt){
+  history.push(label); undoStack.push(label);
+  if(countIt) moveCount++;
+  afterUserMove();
+}
 function doMove(label, opts){
   opts = opts || {};
   var move = parseMove(label);
   animateMove(move, function(){
-    if(!opts.silent){
-      history.push(label); undoStack.push(label);
-      if(!opts.noCount) moveCount++;
-      afterUserMove();
-    }
+    if(!opts.silent) recordMove(label, !opts.noCount);
     if(opts.cb) opts.cb();
   });
 }
@@ -457,17 +703,37 @@ function renderNet(){
   if(HAS_THREE){ netView.style.display='none'; return; }
   netView.style.display='flex';
   var order = [null,'U',null,null,'L','F','R','B',null,'D',null,null];
+  var slotCubie = null;
+  if(targetHL.home) cubies.forEach(function(c){
+    if(c.pos.x===targetHL.home.x && c.pos.y===targetHL.home.y && c.pos.z===targetHL.home.z) slotCubie = c;
+  });
   var html = '<div style="display:grid;grid-template-columns:repeat(4,minmax(0,86px));gap:6px;max-width:380px;width:100%">';
   order.forEach(function(f){
     if(!f){ html += '<div></div>'; return; }
-    var g = getFaceGrid(f);
-    html += '<div><div style="font:700 11px Nunito Sans;text-align:center;color:var(--muted);margin-bottom:2px">'+COLOR_NAMES[f].toUpperCase()+'</div><div style="display:grid;grid-template-columns:repeat('+N+',1fr);gap:2px;background:#181a18;padding:3px;border-radius:7px">';
-    g.forEach(function(row){ row.forEach(function(cell){ html += '<div style="aspect-ratio:1;border-radius:2px;background:'+(cell?HEX[cell]:'#333')+'"></div>'; }); });
-    html += '</div></div>';
+    var cells = getFaceCells(f);
+    html += '<div class="net-panel'+(selectedFace===f?' sel':'')+'" data-netface="'+f+'"><div style="font:700 11px Nunito Sans;text-align:center;color:var(--muted);margin-bottom:2px">'+COLOR_NAMES[f].toUpperCase()+'</div><div style="display:grid;grid-template-columns:repeat('+N+',1fr);gap:2px;background:#181a18;padding:3px;border-radius:7px">';
+    cells.forEach(function(c){
+      var cell = stickerFacing(c, f);
+      var cls = 'net-cell' + (targetHL.cubie===c ? ' target' : '') + (slotCubie===c && targetHL.cubie!==c ? ' slot' : '');
+      html += '<div class="'+cls+'" style="aspect-ratio:1;border-radius:2px;background:'+(cell?HEX[cell]:'#333')+'"></div>';
+    });
+    html += '</div><div class="net-btns"><button data-netturn="'+f+'" data-dir="ccw" aria-label="Turn the '+COLOR_NAMES[f]+' face counter-clockwise">&#8634;</button><button data-netturn="'+f+'" data-dir="cw" aria-label="Turn the '+COLOR_NAMES[f]+' face clockwise">&#8635;</button></div></div>';
   });
   html += '</div>';
   netView.innerHTML = html;
 }
+netView.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('[data-netturn]') : null;
+  if(b){
+    var f = b.getAttribute('data-netturn');
+    setSelected(f); flashFace(f);
+    doMove(f + (b.getAttribute('data-dir')==='ccw' ? "'" : ""));
+    startTimerIfNeeded();
+    return;
+  }
+  var p = e.target.closest ? e.target.closest('[data-netface]') : null;
+  if(p) setSelected(p.getAttribute('data-netface'));
+});
 /* ============ Face grids (for the coach) ============ */
 var DIR_VEC = { px:[1,0,0], nx:[-1,0,0], py:[0,1,0], ny:[0,-1,0], pz:[0,0,1], nz:[0,0,-1] };
 var FACE_NORMAL = { U:[0,1,0], D:[0,-1,0], F:[0,0,1], B:[0,0,-1], R:[1,0,0], L:[-1,0,0] };
@@ -481,7 +747,7 @@ function stickerFacing(c, face){
   }
   return null;
 }
-function getFaceGrid(face){
+function getFaceCells(face){
   var ac = FACE_AXIS_COORD[face], axis = ac[0], sign = ac[1], h = half();
   var cells = cubies.filter(function(c){ return c.pos[axis] === sign*h; });
   // sort: rows top->bottom, cols left->right as seen looking at the face
@@ -498,6 +764,10 @@ function getFaceGrid(face){
     return -c.pos.z; // R
   }
   cells.sort(function(a,b){ return (rowKey(a)-rowKey(b)) || (colKey(a)-colKey(b)); });
+  return cells;
+}
+function getFaceGrid(face){
+  var cells = getFaceCells(face);
   var grid=[], idx=0;
   for(var r=0;r<N;r++){ grid.push([]); for(var col=0;col<N;col++){ grid[r].push(stickerFacing(cells[idx++], face)); } }
   return grid;
@@ -553,6 +823,54 @@ function findCornerWith(colorLetters){
     var c=cubies[i], cols=Object.keys(c.stickers).filter(function(d){return c.stickers[d];}).map(function(d){return c.stickers[d];});
     if(cols.length!==3) continue;
     if(colorLetters.every(function(x){return cols.indexOf(x)>-1;})) return c;
+  }
+  return null;
+}
+
+/* "Show me" solver for one white edge: BFS over just that edge's position +
+   white-sticker direction (24 states), so the shortest move sequence that
+   parks the edge in its home slot, white side up, is always found. */
+var BFS_MOVES = [];
+['U','D','L','R','F','B'].forEach(function(f){ BFS_MOVES.push(f, f+"'", f+"2"); });
+function singleCubieAfter(st, label){
+  var move = parseMove(label);
+  if(move.whole) return null;
+  var def = FACE_DEF[move.face], axis = def.axis;
+  var dir = def.cwDir * (move.prime ? -1 : 1);
+  var pos = {x:st.pos.x, y:st.pos.y, z:st.pos.z}, ori = st.ori;
+  var turns = move.dbl ? 2 : 1, layers = layersFor(move);
+  for(var t=0;t<turns;t++){
+    if(layers.indexOf(pos[axis])===-1) break;
+    pos = rotCoord(pos, axis, dir);
+    ori = matMul(rotMat(axis, dir), ori);
+  }
+  return { pos:pos, ori:ori };
+}
+function solveEdgeToTop(cubie, homePos){
+  if(N!==3 || !cubie) return null;
+  var whiteDirLocal = null;
+  for(var d in cubie.stickers){ if(cubie.stickers[d]==='U') whiteDirLocal = DIR_VEC[d]; }
+  if(!whiteDirLocal) return null;
+  function wdir(st){ return matVec(st.ori, whiteDirLocal); }
+  function keyOf(st){ var w = wdir(st); return st.pos.x+','+st.pos.y+','+st.pos.z+'|'+w[0]+','+w[1]+','+w[2]; }
+  function goal(st){ var w = wdir(st); return st.pos.x===homePos.x && st.pos.y===homePos.y && st.pos.z===homePos.z && w[0]===0 && w[1]===1 && w[2]===0; }
+  var start = { pos:{x:cubie.pos.x, y:cubie.pos.y, z:cubie.pos.z}, ori:cubie.ori };
+  if(goal(start)) return [];
+  var seen = {}; seen[keyOf(start)] = 1;
+  var queue = [{ st:start, path:[] }];
+  while(queue.length){
+    var cur = queue.shift();
+    if(cur.path.length >= 9) continue;
+    for(var i=0;i<BFS_MOVES.length;i++){
+      var ns = singleCubieAfter(cur.st, BFS_MOVES[i]);
+      if(!ns) continue;
+      var k = keyOf(ns);
+      if(seen[k]) continue;
+      seen[k] = 1;
+      var np = cur.path.concat(BFS_MOVES[i]);
+      if(goal(ns)) return np;
+      queue.push({ st:ns, path:np });
+    }
   }
   return null;
 }
@@ -695,7 +1013,12 @@ function renderCoach(){
     stageNameEl.textContent = "🎉 Cube solved!";
     coachBody.innerHTML = "<p>Every face is a solid colour. That's a genuine solve — nicely done.</p><p>Want another go? Hit <b>Scramble</b>, try a bigger cube above, or press <b>Watch a solve</b> to see the layers built in order.</p>";
     pendingAlg = null;
+    pendingShow = null;
+    targetHL = { cubie:null, home:null };
     document.getElementById('doAlgBtn').disabled = true;
+    document.getElementById('showMeBtn').disabled = true;
+    applyHighlights();
+    if(!HAS_THREE) renderNet();
     return;
   }
 
@@ -728,7 +1051,40 @@ function renderCoach(){
   coachBody.innerHTML = html;
   var adv = document.getElementById('advStageBtn');
   if(adv) adv.addEventListener('click', function(){ bigStageIdx = Math.min(currentStages().length-1, bigStageIdx+1); renderCoach(); });
+
+  /* Visual target: glow the exact piece to work on + its home slot.
+     In Step-by-step, "Show me" plays the precise moves that park the piece. */
+  targetHL = { cubie:null, home:null };
+  pendingShow = (helpLevel!=='hint' && pendingAlg && pendingAlg.length) ? pendingAlg : null;
+  if(N===3 && st.id==='cross'){
+    var hC = half(), crossSides = ['F','B','L','R'];
+    for(var ci=0; ci<4; ci++){
+      var cs = crossSides[ci];
+      var slotOK = (cs==='F'&&g.U[2][1]==='U'&&g.F[0][1]==='F')||(cs==='B'&&g.U[0][1]==='U'&&g.B[0][1]==='B')||(cs==='L'&&g.U[1][0]==='U'&&g.L[0][1]==='L')||(cs==='R'&&g.U[1][2]==='U'&&g.R[0][1]==='R');
+      if(slotOK) continue;
+      var ec = findEdgeWith(['U', cs]);
+      if(!ec) continue;
+      var homePos = cs==='F' ? {x:0,y:hC,z:hC} : cs==='B' ? {x:0,y:hC,z:-hC} : cs==='L' ? {x:-hC,y:hC,z:0} : {x:hC,y:hC,z:0};
+      targetHL = { cubie:ec, home:homePos };
+      if(helpLevel==='walk'){ var seq = solveEdgeToTop(ec, homePos); if(seq && seq.length) pendingShow = seq; }
+      break;
+    }
+  }
+  if(N===3 && st.id==='corners'){
+    var combos2 = [['U','F','R'],['U','F','L'],['U','B','L'],['U','B','R']], hK = half();
+    for(var ki=0; ki<4; ki++){
+      var cc2 = findCornerWith(combos2[ki]);
+      if(!cc2) continue;
+      var hx = combos2[ki].indexOf('R')>-1 ? hK : -hK;
+      var hz = combos2[ki].indexOf('F')>-1 ? hK : -hK;
+      var isHome = cc2.pos.x===hx && cc2.pos.y===hK && cc2.pos.z===hz && stickerFacing(cc2,'U')==='U';
+      if(!isHome){ targetHL = { cubie:cc2, home:{x:hx, y:hK, z:hz} }; break; }
+    }
+  }
+  document.getElementById('showMeBtn').disabled = !(pendingShow && pendingShow.length);
   document.getElementById('doAlgBtn').disabled = !pendingAlg;
+  applyHighlights();
+  if(!HAS_THREE) renderNet();
 }
 
 /* ============ UI wiring ============ */
@@ -738,17 +1094,31 @@ var FACES = [
 ];
 var faceGrid = document.getElementById('faceGrid');
 FACES.forEach(function(fd){
-  var col = document.createElement('div'); col.className='face-col';
-  var main = document.createElement('button'); main.className='face-btn '+fd.cls; main.innerHTML = fd.f+'<small>'+fd.label+'</small>';
-  main.addEventListener('click', function(){ doMove(currentLabel(fd.f,false,false)); startTimerIfNeeded(); });
-  var row = document.createElement('div'); row.className='mini-row';
-  var prime = document.createElement('button'); prime.className='mini-btn'; prime.textContent = fd.f+"'";
-  prime.addEventListener('click', function(){ doMove(currentLabel(fd.f,true,false)); startTimerIfNeeded(); });
-  var dbl = document.createElement('button'); dbl.className='mini-btn'; dbl.textContent = fd.f+"2";
-  dbl.addEventListener('click', function(){ doMove(currentLabel(fd.f,false,true)); startTimerIfNeeded(); });
-  row.appendChild(prime); row.appendChild(dbl);
-  col.appendChild(main); col.appendChild(row);
+  var col = document.createElement('div'); col.className='face-card'; col.setAttribute('data-face', fd.f);
+  var head = document.createElement('div'); head.className='face-head';
+  head.setAttribute('role','button'); head.setAttribute('tabindex','0');
+  head.setAttribute('aria-label','Highlight the '+fd.label+' face');
+  head.innerHTML = '<span class="face-swatch" style="background:'+HEX[fd.f]+'"></span><span class="face-name">'+fd.label+' face</span><span class="face-key">key <kbd>'+fd.f+'</kbd></span>';
+  head.addEventListener('click', function(){ setSelected(fd.f); });
+  head.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setSelected(fd.f); } });
+  var row = document.createElement('div'); row.className='turn-row';
+  var ccw = document.createElement('button'); ccw.className='turn-btn';
+  ccw.innerHTML = '&#8634; Counter-clockwise<small>'+fd.f+'&prime; &mdash; turn it back</small>';
+  ccw.addEventListener('click', function(){ setSelected(fd.f); flashFace(fd.f); doMove(currentLabel(fd.f,true,false)); startTimerIfNeeded(); });
+  var cw = document.createElement('button'); cw.className='turn-btn main';
+  cw.innerHTML = '&#8635; Clockwise<small>'+fd.f+' &mdash; the normal way</small>';
+  cw.addEventListener('click', function(){ setSelected(fd.f); flashFace(fd.f); doMove(currentLabel(fd.f,false,false)); startTimerIfNeeded(); });
+  row.appendChild(ccw); row.appendChild(cw);
+  var halfBtn = document.createElement('button'); halfBtn.className='half-btn';
+  halfBtn.innerHTML = 'Half turn, 180&deg; <small>'+fd.f+'2</small>';
+  halfBtn.addEventListener('click', function(){ setSelected(fd.f); flashFace(fd.f); doMove(currentLabel(fd.f,false,true)); startTimerIfNeeded(); });
+  col.appendChild(head); col.appendChild(row); col.appendChild(halfBtn);
   faceGrid.appendChild(col);
+});
+document.getElementById('selCw').addEventListener('click', function(){ turnSelected(false); });
+document.getElementById('selCcw').addEventListener('click', function(){ turnSelected(true); });
+document.querySelectorAll('.key[data-keyface]').forEach(function(el){
+  el.addEventListener('click', function(){ setSelected(el.getAttribute('data-keyface')); flashFace(el.getAttribute('data-keyface')); });
 });
 function currentLabel(face, prime, dbl){
   var wide = document.getElementById('wideToggle').checked && N>2;
@@ -835,6 +1205,11 @@ document.getElementById('doAlgBtn').addEventListener('click', function(){
   if(!pendingAlg) return;
   doSequence(pendingAlg.slice(), 0, {}, null);
 });
+document.getElementById('showMeBtn').addEventListener('click', function(){
+  if(!pendingShow || !pendingShow.length) return;
+  animScale = 3; // play it slowly so it can be mirrored move by move
+  doSequence(pendingShow.slice(), 0, {}, function(){ animScale = 1; });
+});
 document.getElementById('demoBtn').addEventListener('click', function(){
   // Scramble then "solve" by reversing the scramble — an honest demo of the solved state being reached move by move.
   var faces=['U','D','L','R','F','B'], seq=[], lastFace='';
@@ -854,8 +1229,11 @@ document.addEventListener('keydown', function(e){
   var k = e.key;
   if(k==='2' && pendingDouble){ var lbl = pendingDouble+'2'; pendingDouble=null; doMove(lbl); startTimerIfNeeded(); return; }
   pendingDouble = null;
+  if(k==='Escape'){ setSelected(null); return; }
+  if((k===','||k==='.') && selectedFace){ turnSelected(k===','); return; }
   if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(k)>-1){
     e.preventDefault();
+    if((k==='ArrowLeft'||k==='ArrowRight') && selectedFace){ turnSelected(k==='ArrowLeft'); return; }
     if(k==='ArrowLeft') viewTarget.y -= 0.35; if(k==='ArrowRight') viewTarget.y += 0.35;
     if(k==='ArrowUp') viewTarget.x -= 0.25; if(k==='ArrowDown') viewTarget.x += 0.25;
     viewTarget.x = Math.max(-1.4, Math.min(1.4, viewTarget.x));
@@ -868,6 +1246,8 @@ document.addEventListener('keydown', function(e){
     var wide = document.getElementById('wideToggle').checked && N>2;
     var lbl = up + (wide?'w':'') + (prime?"'":"");
     pendingDouble = up + (wide?'w':'');
+    setSelected(up);
+    flashFace(up);
     doMove(lbl); startTimerIfNeeded();
     return;
   }
@@ -879,7 +1259,14 @@ document.addEventListener('keydown', function(e){
 });
 
 /* render loop */
-function loop(){ if(!HAS_THREE) return; requestAnimationFrame(loop); renderer.render(scene, camera); }
+function loop(){
+  if(!HAS_THREE) return;
+  requestAnimationFrame(loop);
+  var t = performance.now()*0.006;
+  for(var i=0;i<hlPulse.length;i++) hlPulse[i].emissiveIntensity = 0.85 + 0.55*Math.sin(t);
+  if(slotMarker && slotMarker.visible) slotMarker.scale.setScalar((3/N) * (1 + 0.05*Math.sin(t)));
+  renderer.render(scene, camera);
+}
 
 buildCube();
 layoutCamera();
